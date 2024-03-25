@@ -63,7 +63,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            chmod 777 ../../scripts/deploy.sh  
-            cp ./src/main/resources/deploy.sh ./deploy.sh  
+            cd kuitAos
+            chmod 777 ./scripts/deploy.sh
+            cp ./scripts/deploy.sh ./deploy.sh
             ./deploy.sh
             docker image prune -f
