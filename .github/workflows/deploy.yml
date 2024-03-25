@@ -35,6 +35,7 @@ jobs:
 
       - name: create application.yml and privateKey.pem
         run: |
+          mkdir ./src/main/resources
           cd ./src/main/resources
           touch ./application.yml
           echo "${{ secrets.PROPERTIES_PROD }}" > ./application.yml
