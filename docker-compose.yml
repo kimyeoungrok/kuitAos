@@ -1,0 +1,14 @@
+version: '3'
+services:
+  blue:
+    image: nginx
+    container_name: blue
+    restart: always
+    ports:
+      - 8080:8080
+  green:
+    image: nginx
+    container_name: green
+    restart: always
+    ports:
+      - 8081:8080

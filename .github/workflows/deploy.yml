@@ -38,8 +38,6 @@ jobs:
           cd ./src/main/resources
           touch ./application.yml
           echo "${{ secrets.PROPERTIES_PROD }}" > ./application.yml
-          touch ./private_key.pem
-          echo "${{ secrets.PRIVATE_KEY_PEM }}" > ./private_key.pem
         shell: bash
 
       - name: Build With Gradle
