@@ -35,7 +35,6 @@ jobs:
 
       - name: create application.yml and privateKey.pem
         run: |
-          mkdir ./src/main/resources
           cd ./src/main/resources
           touch ./application.yml
           echo "${{ secrets.PROPERTIES_PROD }}" > ./application.yml
@@ -63,7 +62,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            cd kuitAos
             chmod 777 ./scripts/deploy.sh
             cp ./scripts/deploy.sh ./deploy.sh
             ./deploy.sh
