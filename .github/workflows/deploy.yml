@@ -63,7 +63,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            sudo su
             cp ./scripts/deploy.sh ./deploy.sh
             ./deploy.sh
             docker image prune -f
