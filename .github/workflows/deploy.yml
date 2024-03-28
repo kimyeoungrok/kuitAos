@@ -54,32 +54,16 @@ jobs:
       
 
       ## deploy to production
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.0
-
-      - name: SCP Command to Transfer Files
-        uses: appleboy/scp-action@v0.1.4
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        id: deploy-prod
         with:
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.EC2_USERNAME}}
-          key: ${{secrets.SSH_PRIVATE_KEY}}
-          source: "./docker-compose.yml"
-          target: "/home/ubuntu"
-          port: 22
-
-      - name: SSH Remote Commands
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.EC2_USERNAME}}
-          key: ${{secrets.SSH_PRIVATE_KEY}}
-          port: 22
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          envs: GITHUB_SHA
           script: |
-            sudo docker-compose down
-            sudo docker-compose pull
-            sudo docker-compose up -d
-            sudo docker image prune -f
+            sudo docker rm -f $(docker ps -qa)
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
+            docker-compose up -d
+            docker image prune -f
