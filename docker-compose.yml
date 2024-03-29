@@ -1,7 +1,7 @@
 version: '3'
 services:
   trothcam:
-    image: kimyeongrok/nginx
+    image: kimyeongrok/nginx:latest
     container_name: nginx-container
     restart: always
     ports:
