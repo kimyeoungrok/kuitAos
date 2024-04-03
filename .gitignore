@@ -30,7 +30,7 @@ out/
 application.yml
 application.properties
 private_key.pem
-
+*.pem
 
 ### NetBeans ###
 /nbproject/private/
