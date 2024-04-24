@@ -21,7 +21,9 @@ jobs:
           distribution: 'temurin' # https://github.com/actions/setup-java
 
       - name: Build With Gradle
-        run: ./gradlew build -x test
+        run: |
+          chmod 777 ./gradlew
+          ./gradlew build -x test
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
