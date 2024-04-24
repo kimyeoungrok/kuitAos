@@ -42,8 +42,9 @@ public class WebSecurityConfig {
                 .requestMatchers("/h2-console/**",
                         "/favicon.ico",
                         "/error",
-                        "/week/**")
-
+                        "/week/**",
+                        "/hc",
+                        "/env")
                 .requestMatchers("/*"); // 인증 처리 하지 않을 케이스
     }
 

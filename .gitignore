@@ -29,6 +29,7 @@ out/
 
 application.yml
 application.properties
+application-secret.yml
 private_key.pem
 *.pem
 

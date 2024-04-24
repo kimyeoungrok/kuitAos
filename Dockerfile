@@ -1,3 +1,6 @@
 FROM amazoncorretto:17
-COPY build/libs/kuitAos-0.0.1-SNAPSHOT.jar app.jar
-CMD ["java", "-jar", "app.jar"]
+ARG JAR_FILE=build/libs/*.jar
+ARG PROFILES
+ARG ENV
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-Dspring.profiles.active=${PROFILES}", "-Dserver.env=${ENV}", "-jar", "app.jar"]
