@@ -18,7 +18,7 @@ public class controller {
 
     @GetMapping("/test")
     public BaseResponse<String> doTest() {
-        return new BaseResponse<>("success");
+        return new BaseResponse<>("fail");
     }
 
     @GetMapping("/post")
