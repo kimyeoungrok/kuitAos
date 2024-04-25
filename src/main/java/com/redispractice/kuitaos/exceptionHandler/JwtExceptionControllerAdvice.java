@@ -9,6 +9,7 @@
  */
 package com.redispractice.kuitaos.exceptionHandler;
 
+import com.redispractice.kuitaos.exception.JwtException;
 import com.redispractice.kuitaos.exception.JwtUnsupportedTokenTypeException;
 import jakarta.annotation.Priority;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,14 @@ public class JwtExceptionControllerAdvice {
     public BaseErrorResponse handle_jwtUnauthorizedException(JwtUnsupportedTokenTypeException e){
         return new BaseErrorResponse(e.getResponseStatus());
     }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(JwtException.class)
+    public BaseErrorResponse handle_jwtException(JwtUnsupportedTokenTypeException e){
+        return new BaseErrorResponse(e.getResponseStatus());
+    }
+
+
 
 
 }
