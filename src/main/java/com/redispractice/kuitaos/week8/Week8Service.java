@@ -46,9 +46,15 @@ public class Week8Service {
         String password = signupRequest.getPassword();
         String nickName = signupRequest.getNickName();
 
+        if(userId.isEmpty() || password.isEmpty() || nickName.isEmpty()){
+            throw new AuthException(USER_INFO_EMPTY);
+        }
+
         if(authRepository.findByUserId(userId) != null){
             throw new AuthException(ID_DUPLICATE);
         }
+
+
 
         Member member = Member.of(null, nickName);
         memberRepository.save(member);
