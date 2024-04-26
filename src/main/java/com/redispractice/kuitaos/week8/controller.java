@@ -40,4 +40,10 @@ public class controller {
         Long memberId = Long.parseLong(httpServletRequest.getAttribute("memberId").toString());
         return new BaseResponse<>(week8Service.modifyNickName(modifyNickNameRequest, memberId));
     }
+
+    @GetMapping("/nick-name")
+    public BaseResponse<GetNickNameResponse> getNickName(HttpServletRequest httpServletRequest){
+        Long memberId = Long.parseLong(httpServletRequest.getAttribute("memberId").toString());
+        return new BaseResponse<>(week8Service.getNickName(memberId));
+    }
 }

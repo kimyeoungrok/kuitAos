@@ -15,8 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import static com.redispractice.kuitaos.reponse.status.BaseExceptionStatus.ID_NOT_EXIST;
-import static com.redispractice.kuitaos.reponse.status.BaseExceptionStatus.PASSWORD_NOT_MATCH;
+import static com.redispractice.kuitaos.reponse.status.BaseExceptionStatus.*;
 
 @Service
 @Slf4j
@@ -46,6 +45,10 @@ public class Week8Service {
         String userId = signupRequest.getUserId();
         String password = signupRequest.getPassword();
         String nickName = signupRequest.getNickName();
+
+        if(authRepository.findByUserId(userId) != null){
+            throw new AuthException(ID_DUPLICATE);
+        }
 
         Member member = Member.of(null, nickName);
         memberRepository.save(member);
@@ -84,5 +87,10 @@ public class Week8Service {
         memberRepository.save(member);
 
         return ModifyNickNameResponse.of("닉네임 변경 성공");
+    }
+
+    public GetNickNameResponse getNickName(Long memberId) {
+        Member member = memberRepository.findById(memberId).get();
+        return GetNickNameResponse.of(member.getNickName());
     }
 }

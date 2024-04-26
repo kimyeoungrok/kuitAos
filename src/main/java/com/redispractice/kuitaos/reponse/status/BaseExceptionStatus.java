@@ -33,6 +33,7 @@ public enum BaseExceptionStatus implements ResponseStatus{
     METHOD_NOT_ALLOWED(2002, HttpStatus.METHOD_NOT_ALLOWED.value(), "해당 URL에서는 지원하지 않는 HTTP Method 입니다."),
     PASSWORD_NOT_MATCH(2003, HttpStatus.BAD_REQUEST.value(), "비밀번호가 틀립니다."),
     ID_NOT_EXIST(2004, HttpStatus.BAD_REQUEST.value(), "아이디가 존재하지 않습니다."),
+    ID_DUPLICATE(2005, HttpStatus.BAD_REQUEST.value(), "중복된 아이디 입니다."),
 
     /**
      * 3000: Server, Database 오류 (INTERNAL_SERVER_ERROR)
