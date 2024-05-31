@@ -14,6 +14,7 @@ public class Auth {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auth_id")
     private Long id;
+    //아이디
 
     private String userId;
     private String password;
